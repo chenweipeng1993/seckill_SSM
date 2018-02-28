@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.peng.seckill.dao.SeckillDao">
+    <!-- 写xml的目的是为DAO接口方法提供sql语句配置 -->
+    <!-- 更新语句不需要resultType，传入多个参数也不需要设置parmaterType -->
+    <update id="reduceNumber" >
+        UPDATE
+          seckill
+        SET
+            number = number-1
+        where seckill_id = #{seckillId}
+        and start_time <![CDATA[<=]]> #{killTime}
+        and end_time <![CDATA[ >= ]]> #{killTime}
+        and number > 0
+    </update>
+
+    <!-- resultType直接写类名没有加包名是有一个设置的 -->
+    <select id="queryById" resultType="Seckill" parameterType="long">
+        select seckill_id,name,number,start_time,end_time,create_time
+        FROM seckill
+        WHERE seckill_id = #{seckillId}
+    </select>
+    <!-- 返回的是个list，resultType直接设置为list里面的对象即可 -->
+    <!-- 在偏移量offet之后取多少行limlt -->
+    <select id="queryAll" resultType="Seckill" >
+        select seckill_id,name,number,start_time,end_time,create_time
+        FROM seckill
+        ORDER BY create_time DESC
+        LIMIT #{offet},#{limit}
+    </select>
+</mapper>

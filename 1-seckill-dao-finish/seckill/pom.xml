@@ -1,0 +1,155 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.seckill</groupId>
+  <artifactId>seckill</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>seckill Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <!-- 使用junit4 使用注解的方式-->
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+      <!-- 补全项目依赖-->
+      <!-- 1:日志 java日志：
+          slf4j是规范接口
+          日志实现是log4j,logback,common-logging
+          使用slf4j+logback
+      -->
+      <dependency>
+          <!-- slf4j是规范接口 -->
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+          <version>1.7.12</version>
+      </dependency>
+      <dependency>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-core</artifactId>
+          <version>1.2.3</version>
+      </dependency>
+      <!-- 实现slf4j接口并整合-->
+      <dependency>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+          <version>1.2.3</version>
+      </dependency>
+
+      <!--2:数据库相关的依赖-->
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>6.0.6</version>
+          <!--数据库驱动真正工作的时候是在运行的时候-->
+          <scope>runtime</scope>
+      </dependency>
+      <!-- 需要数据库的连接池来优化数据库的操作 -->
+      <dependency>
+          <groupId>c3p0</groupId>
+          <artifactId>c3p0</artifactId>
+          <version>0.9.1.2</version>
+      </dependency>
+
+      <!-- DAO框架：Mybatis依赖-->
+      <dependency>
+          <groupId>org.mybatis</groupId>
+          <artifactId>mybatis</artifactId>
+          <version>3.4.5</version>
+      </dependency>
+      <!-- mybatis自身实现的spring整合依赖-->
+      <dependency>
+          <groupId>org.mybatis</groupId>
+          <artifactId>mybatis-spring</artifactId>
+          <version>1.3.1</version>
+      </dependency>
+
+      <!-- 3:Servlet web相关的依赖 -->
+      <!-- jsp的标签库 -->
+      <dependency>
+          <groupId>taglibs</groupId>
+          <artifactId>standard</artifactId>
+          <version>1.1.2</version>
+      </dependency>
+      <!-- jstl的标签库 -->
+      <dependency>
+          <groupId>jstl</groupId>
+          <artifactId>jstl</artifactId>
+          <version>1.2</version>
+      </dependency>
+      <!-- Springmvc默认也需要jackson ajax用的也是jackson-->
+      <!-- springmvc默认使用的是jackson来解析json的 -->
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>2.9.3</version>
+      </dependency>
+      <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>javax.servlet-api</artifactId>
+          <version>3.1.0</version>
+      </dependency>
+
+      <!-- 4:Spring依赖 -->
+      <!-- 1)spring核心依赖 -->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-core</artifactId>
+          <version>4.3.9.RELEASE</version>
+      </dependency>
+      <!--IOC的依赖-->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-beans</artifactId>
+          <version>4.3.9.RELEASE</version>
+      </dependency>
+      <!-- spring的扩展包，包扫描啊 -->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-context</artifactId>
+          <version>4.3.9.RELEASE</version>
+      </dependency>
+
+      <!--2)spring dao 层依赖-->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jdbc</artifactId>
+          <version>4.3.9.RELEASE</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-tx</artifactId>
+          <version>4.3.9.RELEASE</version>
+      </dependency>
+
+      <!-- 3)spring web相关的依赖 -->
+      <!-- 项目本质上是javaweb工程，web工程需要通过servlet容器去启动比如tomcat
+      当启动的时候容器需要加载spring IOC AOP来启动spring的工厂，这就需要spring-web提供支持-->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-web</artifactId>
+          <version>4.3.9.RELEASE</version>
+      </dependency>
+      <!--使用的是mvc框架-->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-webmvc</artifactId>
+          <version>4.3.9.RELEASE</version>
+      </dependency>
+
+      <!-- 4)spring test相关依赖 -->
+      <!-- spring方便做单元测试的依赖 -->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-test</artifactId>
+          <version>4.3.9.RELEASE</version>
+      </dependency>
+
+  </dependencies>
+  <build>
+    <finalName>seckill</finalName>
+  </build>
+</project>
